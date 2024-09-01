@@ -20,21 +20,22 @@ let complete = 0;
 let i = -1;
 
 function storeData() {
-	i++;
 	let temp = input.value;
 	input.value = "";
-
-	if (!temp) {return ''}
-
-	tasks.push(temp);
-
-	getData();
+	
+	if (temp) {
+		i++;
+		tasks.push(temp);
+		getData();
+	} else {
+		alert("enter Something !");
+	}
 }
 
 function del(li, index) {
 	tasks.splice(index, 1);
 	ticks.splice(index, 1);
-	i--
+	i--;
 
 	output.removeChild(li);
 
@@ -42,22 +43,22 @@ function del(li, index) {
 }
 
 function tickon(icon, index) {
-	let liElem = icon.nextElementSibling
-	let li = icon.parentElement
+	let liElem = icon.nextElementSibling;
+	let li = icon.parentElement;
 
 	if (ticks[index]) {
 		ticks[index] = false;
 		icon.style.background = "#ffffff";
 
 		liElem.style.textDecoration = "none";
-		li.style.background = "#ffffff"
+		li.style.background = "#ffffff";
 	} else {
 		ticks[index] = true;
 		icon.style.background = "#44ff44";
 		icon.innerHTML = " &#10004;";
 
 		liElem.style.textDecoration = "line-through";
-		li.style.background = "#dddddd"
+		li.style.background = "#dddddd";
 	}
 
 	updatetick();
@@ -93,7 +94,6 @@ function getData() {
 	);
 	mytick.innerHTML = "&#10004;"; // ✅
 
-
 	let mytask = document.createElement("span");
 	mytask.setAttribute("class", "me-4 text-black");
 	mytask.innerHTML = tasks[i]; // task
@@ -118,6 +118,8 @@ function getData() {
 	);
 }
 
-
 // ****** Demo
-((i) => {input.value = i; storeData()})("demo")
+((i) => {
+	input.value = i;
+	storeData();
+})("demo");
