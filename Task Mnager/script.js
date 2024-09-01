@@ -23,7 +23,7 @@ function storeData() {
 	i++;
 	let temp = input.value;
 
-	if (!temp) return "";
+	if (!temp) return alert("Enter Something");
 
 	input.value = "";
 	tasks.push(temp);
