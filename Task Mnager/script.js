@@ -13,8 +13,6 @@ store.addEventListener("click", storeData);
 let get = document.querySelector("#get");
 get.addEventListener("click", (e) => updatetick);
 
-// updatetick();
-
 let tasks = [];
 let ticks = [];
 let complete = 0;
@@ -40,8 +38,6 @@ function del(li, index) {
 
 	output.removeChild(li);
 
-	console.log("In del", index, output);
-
 	updatetick();
 }
 
@@ -62,9 +58,7 @@ function tickon(icon, index) {
 
 		liElem.style.textDecoration = "line-through";
 		li.style.background = "#dddddd"
-
 	}
-	console.log("tickon", index, i);
 
 	updatetick();
 }
@@ -72,7 +66,6 @@ function tickon(icon, index) {
 // only for update update count
 function updatetick() {
 	complete = 0;
-	console.log(output.querySelectorAll("li"));
 
 	output.querySelectorAll("li").forEach((li, num) => {
 		if (ticks[num]) {
@@ -81,7 +74,6 @@ function updatetick() {
 			num++;
 		}
 	});
-	console.log("update tick", "complete", complete, tasks);
 
 	tickcountplace.textContent = complete ?? "👎🏻";
 }
@@ -97,13 +89,10 @@ function getData() {
 	let mytick = document.createElement("i");
 	mytick.setAttribute(
 		"class",
-		"me-2 px-1 pe-2 text-white border-black border-2 font-bold"
+		"not-italic me-2 px-1 text-white border-black border-2 rounded-full"
 	);
 	mytick.innerHTML = "&#10004;"; // ✅
 
-	// let myindex = document.createElement("span");
-	// myindex.setAttribute("class", "me-4");
-	// myindex.innerHTML = `${i + 1}.`; // 1.
 
 	let mytask = document.createElement("span");
 	mytask.setAttribute("class", "me-4 text-black");
