@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&family=Sevillana&display=swap');
+
+.Sevillana-cu {
+    font-family: 'Sevillana', cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.geneva {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+}
+
+.fa-trash-can::before {
+    content: "\f2ed";
+}
+
+.bg-nevy-blue {
+    background: rgb(0, 28, 64);
+}
+
+li:hover #trash{
+    animation: fa-shake 1.5s infinite;
+}
+
+li:hover i {
+    opacity: 1;
+}
+
+@keyframes fa-shake {
+    0% {
+        transform: rotate(-15deg);
+    }
+
+    4% {
+        transform: rotate(15deg);
+    }
+
+    8%,
+    24% {
+        transform: rotate(-18deg);
+    }
+
+    12%,
+    28% {
+        transform: rotate(18deg);
+    }
+
+    16% {
+        transform: rotate(-22deg);
+    }
+
+    20% {
+        transform: rotate(22deg);
+    }
+
+    32% {
+        transform: rotate(-12deg);
+    }
+
+    36% {
+
+        transform: rotate(12deg);
+    }
+
+    40%,
+    100% {
+        transform: rotate(0deg);
+    }
+}
