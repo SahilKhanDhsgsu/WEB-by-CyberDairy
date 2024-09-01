@@ -22,10 +22,10 @@ let i = -1;
 function storeData() {
 	i++;
 	let temp = input.value;
-
-	if (!temp) {return alert("Enter Something");}
-
 	input.value = "";
+
+	if (!temp) {return ''}
+
 	tasks.push(temp);
 
 	getData();
