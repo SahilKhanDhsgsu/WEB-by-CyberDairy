@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="../../output.css">
+    <link rel="stylesheet" href="style.css ">
+
+</head>
+
+<body class="bg-black text-white flex flex-col items-center justify-center text-center geneva">
+
+    <div class="container">
+        <h1 class="text-5xl font-bold my-8 Sevillana-cu ">Your Own Todo List</h1>
+
+        <div
+            class="text-2xl text-black text-center flex justify-center rounded-full overflow-hidden border-blue-600 border-2 m-auto max-w-fit shadow-2xl shadow-white ">
+            <input class="rounded-s-full text-center" name="" id="textarea"></input>
+            <input class="rounded-e-full  max-w-[2.5rem] pe-3 bg-blue-300" type="date" name="" id="time">
+        </div>
+        <div class="my-4 flex gap-8 justify-evenly max-w-sm m-auto">
+            <button
+                class="p-2 px-4 bg-green-500 rounded-full text-xl border-white border-4 outline outline-green-500 hover:outline-0 hover:scale-110  transition-all"
+                id="store">Store Data</button>
+            <button
+                class="p-2 px-4 bg-blue-500 rounded-full text-xl border-white border-4 outline outline-blue-500 hover:outline-0 hover:scale-110 transition-all"
+                id="get">Get
+                Data</button>
+        </div>
+
+    </div>
+
+    <span class="self-end me-12">
+        Completed:
+        <span class="text-3xl font-bold " id="comp"></span>
+    </span>
+    </div>
+
+    <ul class="my-4 text-white p-1 text-xl list-decimal flex flex-col min-w-96 gap-2" id="output">
+    </ul>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
