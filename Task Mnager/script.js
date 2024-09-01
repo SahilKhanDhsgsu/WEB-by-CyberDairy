@@ -47,18 +47,22 @@ function del(li, index) {
 
 function tickon(icon, index) {
 	let liElem = icon.nextElementSibling
+	let li = icon.parentElement
 
 	if (ticks[index]) {
 		ticks[index] = false;
 		icon.style.background = "#ffffff";
 
 		liElem.style.textDecoration = "none";
+		li.style.background = "#ffffff"
 	} else {
 		ticks[index] = true;
 		icon.style.background = "#44ff44";
 		icon.innerHTML = " &#10004;";
 
 		liElem.style.textDecoration = "line-through";
+		li.style.background = "#dddddd"
+
 	}
 	console.log("tickon", index, i);
 
