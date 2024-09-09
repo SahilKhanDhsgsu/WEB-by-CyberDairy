@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Expance Calculator</title>
+    <link rel="stylesheet" href="../../output.css">
+    <style>
+        input+.bg-green-600 {
+            padding: 1px;
+            transition: all 0.2s ease;
+        }
+
+        input:hover+.bg-green-600 {
+            padding: 2px;
+        }
+
+        select+.bg-green-600 {
+            padding: 1px;
+            transition: all 0.3s ease;
+        }
+
+        input:hover+select+.bg-green-600 {
+            padding: 2px;
+        }
+
+        button {
+            font-size: 4rem;
+            line-height: 0px;
+            top: 3px;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center h-screen">
+    <div>
+        <div class="my-4"><img class="w-full" src="images-removebg-preview.png" alt=""></div>
+        <div class="border-2 p-4 rounded container flex flex-col gap-4">
+            <div>
+                <!-- <label for="">Income / Expance Name: </label> -->
+                <input class="" placeholder="Enter Name" type="text" name="" id="iename">
+                <div class=" bg-green-600"></div>
+            </div>
+            <div>
+                <input class=" " placeholder="Enter Amount ₹" type="number" name="" id="ieamount">
+                <select class="" name="" id="iecatagory">
+                    <option value="S">Select</option>
+                    <option class="text-green-700 font-semibold" value="I">Income</option>
+                    <option class="text-red-700 font-semibold" value="E">Expance</option>
+                </select>
+                <div class="bg-green-600"></div>
+            </div>
+            <div>
+
+            </div>
+            <div class="mx-auto  p-0 px-2 text-blue-400 rounded-full">
+                <button id="submit" class="w-16" type="submit"><img src="plus-circle-svgrepo-com.svg" alt=""></button>
+            </div>
+        </div>
+        <ul id="out">
+        </ul>
+    </div>
+</body>
+
+<script>
+    document.querySelector("#submit").addEventListener("click", e => {
+        e.preventDefault()
+
+        let iename = document.querySelector("#iename").value
+        let ieamount = document.querySelector("#ieamount").value
+        let iecatagory = document.querySelector("#iecatagory").value
+
+        if (iecatagory == "S") {
+            alert("Please Select Income or Expance Catagory")
+            return 0;
+        }
+
+        let cat = JSON.parse(localStorage.getItem("type")) ?? []
+        cat.push({ "name": iename, "amount": ieamount, "catagory": iecatagory })
+        localStorage.setItem("type", JSON.stringify(cat))
+
+        // console.log(iename, iecatagory, cat);
+
+        output(cat)
+    })
+
+    function output(data) {
+        let total = 0
+        let out = document.querySelector("#out")
+        console.log(data);
+
+        out.innerHTML = ''
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].catagory == "I") {
+                out.innerHTML += `<li class="flex justify-between p-2 my-2 bg-green-200 rounded-lg"><span>${String(data[i].name)}</span> <span>+ ${String(data[i].amount)}₹</span></li>`
+
+                total += parseInt(data[i].amount)
+            }
+            else {
+                out.innerHTML += `<li class="flex justify-between my-2 p-2 bg-red-200 rounded-lg"><span>${String(data[i].name)}</span> <span>- ${String(data[i].amount)}₹</span></li>`
+
+                total -= parseInt(data[i].amount)
+            }
+
+        }
+
+        if (total >= 0) {
+            out.innerHTML += `<hr> <li class="flex text-2xl font-semibold justify-between my-2 p-2 bg-gray-200  rounded-lg"><span>Total :</span><span class='text-green-500'>+${total}₹</span></li>`
+        }
+        else {
+            out.innerHTML += `<hr> <li class="flex  text-2xl font-semibold justify-between my-2 p-2 bg-gray-200 rounded-lg"><span>Total :</span><span class='text-red-500'>${total}₹</span></li>`
+        }
+    }
+
+    output(JSON.parse(localStorage.getItem("type")))
+</script>
+
+</body>
+
+</html>
