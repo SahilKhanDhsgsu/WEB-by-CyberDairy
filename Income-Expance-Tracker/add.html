@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income Expance Calculator</title>
-    <link rel="stylesheet" href="../out.css">
+    <link rel="stylesheet" href="../../output.css">
     <style>
         input+.bg-green-600 {
             padding: 1px;
@@ -70,6 +70,11 @@
         let iename = document.querySelector("#iename").value
         let ieamount = document.querySelector("#ieamount").value
         let iecatagory = document.querySelector("#iecatagory").value
+
+    
+        document.querySelector("#iename").value = ''
+        document.querySelector("#ieamount").value = ''
+        document.querySelector("#iecatagory").value = 'S'
 
         if (iecatagory == "S") {
             alert("Please Select Income or Expance Catagory")
