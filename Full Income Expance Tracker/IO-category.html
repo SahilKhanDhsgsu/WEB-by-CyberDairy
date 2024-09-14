@@ -12,7 +12,7 @@
     <nav class="flex justify-between p-4 m-4 pb-0 max-md:flex-col max-md:justify-center">
         <h1 class="text-2xl font-semibold max-md:mb-4 max-md:text-center">Income Expance Tracker</h1>
         <ul class="font-semibold flex flex-wrap justify-center gap-6 max-md:text-xs text-center">
-            <li><a class="bg-blue-500 rounded-xl text-white p-2 px-4" href="index.html">Home</a></li>
+            <li><a class=" bg-blue-500 rounded-xl text-white p-2 px-4" href="index.html">Home</a></li>
             <li><a class="bg-blue-800 rounded-xl text-white p-2 px-4" href="IO-category.html">I/O Category</a></li>
             <li><a class="bg-blue-500 rounded-xl text-white p-2 px-4" href="income.html">Income</a></li>
             <li><a class="bg-blue-500 rounded-xl text-white p-2 px-4" href="Expance.html">Expance</a></li>
@@ -54,71 +54,6 @@
     </div>
 </body>
 
-<!-- ******************** JAVASCRIPT CODE ******************** -->
-
-<script>
-    document.addEventListener("DOMContentLoaded", e => {
-
-        LoadInExByLocalStorage();
-
-        let myinput = document.querySelector("input")
-        let mycategory = document.querySelector("select")
-
-        let form = document.querySelector("form");
-        form.addEventListener("submit", e => {
-            e.preventDefault();
-
-            let name = myinput.value
-            let category = mycategory.value
-
-            // validation
-            if (category == "S"){
-                alert("Select Any Category")
-                return
-            }
-
-            if (category == "Income") {
-                let li = document.createElement("li")
-                li.textContent = name
-                document.querySelector("#income-category").append(li)
-
-                // Update in local storage
-                let InputCatogory = JSON.parse(localStorage.getItem("InputCatogory")) ?? []
-                InputCatogory.push(name)
-                localStorage.setItem("InputCatogory", JSON.stringify(InputCatogory))
-            }
-            else if (category == "Expance") {
-                let li = document.createElement("li")
-                li.textContent = name
-                document.querySelector("#expance-category").append(li)
-
-                // Update in local storage
-                let ExpanceCatogory = JSON.parse(localStorage.getItem("ExpanceCatogory")) ?? []
-                ExpanceCatogory.push(name)
-                localStorage.setItem("ExpanceCatogory", JSON.stringify(ExpanceCatogory))
-            }
-
-            // Reset the form
-            form.reset()
-        });
-
-        // Firstly Load All The Data From Loacale Storage
-        function LoadInExByLocalStorage() {
-            let InputCatogory = JSON.parse(localStorage.getItem("InputCatogory")) ?? []
-            InputCatogory.map( name => {
-                let li = document.createElement("li")
-                li.textContent = name
-                document.querySelector("#income-category").append(li)
-            })
-
-            let ExpanceCatogory = JSON.parse(localStorage.getItem("ExpanceCatogory")) ?? []
-            ExpanceCatogory.map( name => {
-                let li = document.createElement("li")
-                li.textContent = name
-                document.querySelector("#expance-category").append(li)
-            })
-        }
-    });
-</script>
+<script src="IO-category.js"></script>
 
 </html>
