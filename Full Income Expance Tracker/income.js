@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", (e) => {
 	LoadInputByLocalStorage();
 
-	document.querySelector("form").addEventListener("submit", (e) => {
+	let form = document.querySelector("form")
+	form.addEventListener("submit", (e) => {
 		e.preventDefault();
 
 		let name = document.querySelector("#Income-name").value;
