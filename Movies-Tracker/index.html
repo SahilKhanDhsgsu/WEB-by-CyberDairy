@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../output.css">
+</head>
+
+<body class="bg-black text-white">
+    <div class="absolute h-screen w-screen -z-10 opacity-20  overflow-hidden flex flex-wrap">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+    </div>
+
+    <nav class="flex justify-between p-4 max-md:flex-col text-center gap-4 ">
+        <h2 class="text-3xl font-bold text-rose-500 ">Movies Tracker</h2>
+        <ul class="text-2xl font-semibold flex gap-4 max-md:text-xl justify-center">
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all text-rose-400 "><a href="#">Home</a></li>
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="category.html">Categories</a>
+            </li>
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="addMovies.html">Add
+                Movies</a></li>
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="yourMovies.html">Your
+                Movies</a></li>
+        </ul>
+    </nav>
+
+    <div class="text-center mt-12 px-12"><h1 class="text-6xl font-semibold max-md:text-3xl">Welcome to the Movies Tracker! Where you Arrange Your <span class="text-yellow-300">Dopamine</span> History</h1></div>
+
+    <div class="p-4 flex flex-col gap-4 justify-center items-center mt-32 ">
+        <input
+            class="bg-black border-white border-2 rounded-xl p-2 text-2xl text-center hover:border-red-500  transition-all"
+            type="text" name="" id="name" placeholder="Enter Your Name">
+        <div>
+            <input class="scale-150 me-2" type="checkbox" name="" id="check">
+            <label for="check">Add some default Catagories</label>
+        </div>
+        <a id="button" class="p-2 px-4 bg-rose-500 rounded-xl text-xl  hover:bg-rose-600 transition-all" href="category.html">
+            Get Started
+        </a>
+    </div>
+</body>
+<script>
+    let input = document.querySelector("#name")
+    let check = document.querySelector("#check")
+
+    document.querySelector("#button").addEventListener("click", e => {
+
+
+        if (input.value == "") {
+            alert("Please Enter Your Name")
+            return
+        }
+
+        if (check.checked == true) {
+            localStorage.setItem("catagoriesData", JSON.stringify(["Action","Comedy","Horror","Sci-fi","Christopher Nolan", "Anime"]))
+        }
+
+        localStorage.setItem("userName", input.value)
+        })
+</script>
+
+</html>
