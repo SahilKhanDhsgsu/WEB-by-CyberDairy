@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../output.css">
+</head>
+
+<body class="bg-black text-white">
+    <div class="absolute h-screen w-screen -z-10 opacity-20  overflow-hidden flex flex-wrap">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+        <img class="w-1/2 object-cover inline" src="image.png" alt="">
+    </div>
+
+    <nav class="flex justify-between p-4 max-md:flex-col text-center gap-4 ">
+        <h2 class="text-3xl font-bold text-rose-500 ">Movies Tracker</h2>
+        <ul class="text-2xl font-semibold flex gap-4 max-md:text-xl justify-center">
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="index.html">Home</a></li>
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all text-rose-400 "><a
+                    href="#">Categories</a>
+            </li>
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="addMovies.html">Add
+                    Movies</a></li>
+            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="yourMovies.html">Your
+                    Movies</a></li>
+        </ul>
+    </nav>
+
+    <div id="name" class="ps-12 text-3xl font-semibold text-rose-600  my-4"></div>
+    <div class="text-center">
+        <h1 class="text-5xl font-semibold my-4">Catagories</h1>
+        <div class="flex max-md:flex-col ">
+            <div class="md:w-1/2 p-4 mx-auto">
+                <h2 class="text-3xl font-semibold text-gray-300">Add Catagories</h2>
+                <br>
+                <hr>
+                <form class="flex justify-center  py-12" action="">
+                    <div class="flex gap-8  items-center text-3xl">
+                        <label for="cat-name"> Catagory name </label>
+                        <input class="bg-black p-2 px-4 border-2 w-60  border-red-500 rounded-xl text-rose-500"
+                            type="text" name="" id="cat-name" placeholder="Catagory Name">
+                    </div>
+                </form>
+                <button class="p-2 px-4 bg-red-900 rounded-xl text-2xl">Add Catagory</button>
+            </div>
+            <div class="md:w-1/2 p-4 mx-auto ">
+                <h2 class="text-3xl font-semibold max-md:w-full text-gray-300 ">Your Catagories</h2>
+                <br>
+                <hr>
+                <ol class="text-start text-2xl my-4 ms-12 list-disc flex flex-col gap-1" id="cat-list">
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", e => {
+
+        let liIndex = 0
+        let categoryListBox = document.querySelector("#cat-list")
+        let input = document.querySelector("#cat-name")
+        addName(document.querySelector("#name"))
+
+        AfterLoaded()
+
+        document.querySelector("button").addEventListener("click", e => {
+            let val = input.value
+
+            if(!val) {
+                alert("Enter Some Catagory")
+                return
+            }
+
+            let CatagoriesData = JSON.parse(localStorage.getItem("catagoriesData")) ?? []
+            CatagoriesData.push(val)
+            localStorage.setItem("catagoriesData", JSON.stringify(CatagoriesData))
+
+            AppendLI(val)
+
+            input.value = ''
+        })
+
+        function AfterLoaded() {
+            let CatagoriesData = JSON.parse(localStorage.getItem("catagoriesData")) ?? []
+
+            CatagoriesData.forEach(cat => {
+                AppendLI(cat)
+
+            })
+        }
+
+        function AppendLI(data) {
+            let li = document.createElement("li")
+            li.setAttribute("class", "w-full")
+            li.id = liIndex
+            li.textContent = data
+
+            let del = document.createElement("button")
+            del.setAttribute("class", "ms-4 bg-red-500 rounded-full p-1 px-2 text-lg hover:bg-red-600 float-right")
+            del.textContent = "Delete"
+            del.addEventListener("click", e => removeli(li))
+            li.appendChild(del)
+
+            categoryListBox.appendChild(li)
+
+            liIndex++
+        }
+
+        function removeli(li) {
+            // console.log(CatagoriesData, index);
+
+            let CatagoriesData = JSON.parse(localStorage.getItem("catagoriesData")) ?? []
+            CatagoriesData.splice(li.id, 1)
+            localStorage.setItem("catagoriesData", JSON.stringify(CatagoriesData))
+
+
+            li.remove()
+        }
+
+        function addName(place) {
+            place.textContent = "👦🏻 Hi " + localStorage.getItem("userName")
+        }
+    })
+</script>
+
+</html>
