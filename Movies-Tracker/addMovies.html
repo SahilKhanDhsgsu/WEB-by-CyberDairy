@@ -5,20 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../out.css">
+    <link rel="stylesheet" href="../../output.css">
 </head>
 
 <body class="bg-black text-white">
     <div class="absolute h-screen w-screen -z-10 opacity-20  overflow-hidden flex flex-wrap">
-        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">    </div>
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+    </div>
 
-    <nav class="flex justify-between p-4 max-md:flex-col text-center gap-4 ">
+    <nav class="flex justify-between p-4  max-md:px-0 max-md:flex-col text-center gap-4 ">
         <h2 class="text-3xl font-bold text-rose-500 ">Movies Tracker</h2>
-        <ul class="text-2xl font-semibold flex gap-4 max-md:text-xl justify-center">
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="index.html">Home</a></li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all"><a href="category.html">Categories</a></li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all  text-rose-400 "><a href="addMovies.html">Add Movies</a></li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="yourMovies.html">Your Movies</a></li>
+        <ul class="text-2xl font-semibold flex gap-4 max-md:text-sm justify-center">
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all "><a href="index.html">Home</a></li>
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all"><a href="category.html">Categories</a></li>
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all  text-rose-400 "><a href="addMovies.html">Add Movies</a></li>
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all "><a href="yourMovies.html">Your Movies</a></li>
         </ul>
     </nav>
 
@@ -26,25 +30,25 @@
 
 
     <div class="text-center">
-        <h1 class="text-5xl font-semibold my-4">Add Movies</h1>
+        <h1 class="text-5xl font-semibold my-4 max-md:text-4xl ">Add Movies</h1>
         <br>
         <hr class="mx-36">
         <br>
         <div class="flex">
             <div class="p-4 mx-auto">
                 <form class="flex justify-center gap-4" action="">
-                    <div class="flex flex-col gap-8 text-end text-2xl">
+                    <div class="flex flex-col gap-8 text-end text-2xl max-md:text-lg">
                         <label for="movies-name"> Movies Name : </label>
                         <label for="movies-name"> Movies Catagory : </label>
                         <label for="movies-date"> Movies Watch Date : </label>
                         <label for="movies-name"> Movies Watch Time : </label>
                         <label for="movies-name"> Movies Rating : </label>
                     </div>
-                    <div class="flex flex-col gap-5 ">
-                        <input class="bg-black p-2 px-4 border-2 border-red-500 rounded-xl text-rose-500"
+                    <div class="flex flex-col gap-5 max-md:gap-3 max-md:text-lg  max-md:max-w-32 ">
+                        <input class="bg-black p-2 px-4 max-md:p-1 max-md:px-2 border-2 border-red-500 rounded-xl text-rose-500"
                             type="text" name="" id="movies-name" placeholder="Movies Name" required>
 
-                        <select class="bg-black p-2 px-4 border-2 border-red-500 rounded-xl"
+                        <select class="bg-black p-2 px-4 border-2 border-red-500 rounded-xl "
                             type="text" name="" id="movies-cat" required>
                             <option value="">Select</option>
                         </select>
@@ -64,77 +68,6 @@
         </div>
     </div>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", e => {
-
-        let liIndex = 0
-        
-        let Mname = document.querySelector("#movies-name")
-        let Mcat = document.querySelector("#movies-cat")
-        let Mdate = document.querySelector("#movies-date")
-        let Mtime = document.querySelector("#movies-time")
-        let Mrating = document.querySelector("#movies-rate")
-
-        addName(document.querySelector("#name"))
-
-        AfterLoaded()
-
-        document.querySelector("button").addEventListener("click", e => {
-
-            console.log(!!Mname.value, !!Mcat.value, !!Mdate.value, !!Mtime.value, !!Mrating.value);
-            
-
-            if(!Mname.value || !Mcat.value || !Mtime.value || !Mdate.value || !Mrating.value) {               
-                alert("Please Enter Full Details 😡")
-                return
-            }
-            if(Mrating.value > 5 || Mrating.value < 0) {
-                alert("Please Enter Valid Rating 😡")
-                return
-            }
-            if(Mtime.value < 0 ){
-                alert("Please Enter Valid Time 😡")
-                return
-            }
-
-            let val = {
-                "name": Mname.value,
-                "catagory": Mcat.value,
-                "date": Mdate.value,
-                "time": Mtime.value,
-                "rating": Mrating.value
-            }
-
-            let MoviesData = JSON.parse(localStorage.getItem("MoviesData")) ?? []
-            MoviesData.push(val)
-            localStorage.setItem("MoviesData", JSON.stringify(MoviesData))
-
-            // console.log(MoviesData);
-            alert("Movie Added Successfully")
-
-            document.querySelector("form").reset()
-        })
-
-        function AfterLoaded() {
-            let CatagoriesData = JSON.parse(localStorage.getItem("catagoriesData")) ?? []
-
-            CatagoriesData.forEach(cat => {
-                AppendOption(cat)
-            })
-        }
-
-        function AppendOption(data) {
-            let op = document.createElement("option")
-            op.value = data
-            op.textContent = data
-
-            Mcat.appendChild(op);
-        }
-
-        function addName(place) {
-            place.textContent = "👦🏻 Hi " + localStorage.getItem("userName")
-        }
-    })
-</script>
+<script src="addMovies.js"></script>
 
 </html>

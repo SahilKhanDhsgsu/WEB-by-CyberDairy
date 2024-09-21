@@ -5,35 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../out.css">
+    <link rel="stylesheet" href="../../output.css">
 </head>
 
 <body class="bg-black text-white">
     <div class="absolute h-screen w-screen -z-10 opacity-20  overflow-hidden flex flex-wrap">
-        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">    </div>
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+    </div>
 
-    <nav class="flex justify-between p-4 max-md:flex-col text-center gap-4 ">
+    <nav class="flex justify-between p-4  max-md:px-0 max-md:flex-col text-center gap-4 ">
         <h2 class="text-3xl font-bold text-rose-500 ">Movies Tracker</h2>
-        <ul class="text-2xl font-semibold flex gap-4 max-md:text-xl justify-center">
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="index.html">Home</a></li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all"><a href="category.html">Categories</a>
+        <ul class="text-2xl font-semibold flex gap-4 max-md:text-sm justify-center">
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all "><a href="index.html">Home</a></li>
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all"><a href="category.html">Categories</a>
             </li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all  "><a href="addMovies.html">Add
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all  "><a href="addMovies.html">Add
                     Movies</a></li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all text-rose-400 "><a href="#">Your
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all text-rose-400 "><a href="#">Your
                     Movies</a></li>
         </ul>
     </nav>
 
     <div id="name" class="ps-12 text-3xl font-semibold text-rose-600  my-4"></div>
 
-    <div class="text-center px-12">
-        <h1 class="text-5xl font-semibold my-4">Your Movies</h1>
+    <div class="text-center px-12 max-md:px-4">
+        <h1 class="text-5xl font-semibold my-4 max-md:text-4xl">Your Movies</h1>
         <br>
         <!-- <hr class="mx-36"> -->
         <br>
-        <table class="m-auto text-2xl max-md:text-xl container" id="m-table">
-            <thead class="font-semibold text-3xl max-md:text-xl text-rose-500 border-b-2">
+        <table class="m-auto text-2xl max-md:text-lg md:container " id="m-table">
+            <thead class="font-semibold text-3xl max-md:text-sm text-rose-500 border-b-2">
                 <tr class="">
                     <td>Name</td>
                     <td>Category</td>
@@ -42,86 +46,24 @@
                     <td>Rating</td>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody class="max-md:text-xs"></tbody>
             <tfoot class="font-semibold"></tfoot>
         </table>
 
         <div class="text-2xl  text-start max-md:text-xl">
-            <h2 class="text-4xl font-semibold text-rose-500 mt-12 max-md:mt-8 max-md:text-3xl">Coose By Catagory</h2>
+            <h2 class="text-4xl font-semibold text-rose-500 mt-12 max-md:mt-8 max-md:text-2xl">Coose By Catagory</h2>
             <label for="s">Category wise: </label>
             <select name="" id="s" class="rounded-lg text-black my-12 max-md:mb-8 max-md:mt-4">
                 <option value="" >Select</option>
             </select>
             <div class="w-full text-rose-400 justify-around text-center flex" id="tot">
-<div>Total Watch Time:  <br><span class="text-4xl max-md:text-3xl font-bold text-rose-500">0</span> m</div>
-<div> Average Rating: <br><span class="text-4xl max-md:text-3xl font-bold text-rose-500">0</span></div>
+<div>Total Watch Time:  <br><span class="text-4xl max-md:text-2xl font-bold text-rose-500">0</span> m</div>
+<div> Average Rating: <br><span class="text-4xl max-md:text-2xl font-bold text-rose-500">0</span></div>
                  
             </div>
         </div>
     </div>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", e => {
-        addName(document.querySelector("#name"))
-
-        SelectOption(document.querySelector("select"))
-
-        let tot = document.querySelector("#tot")
-
-        let totalWatchtime = {}
-        let totalRating = {}
-        let Count = {}
-
-        let TableBody = document.querySelector("#m-table > tbody")
-
-        let MoviesData = JSON.parse(localStorage.getItem("MoviesData")) ?? []
-
-        JSON.parse(localStorage.getItem("catagoriesData")).forEach(cat => {
-            totalWatchtime[cat] = 0;
-            totalRating[cat] = 0;
-            Count[cat] = 0;
-        })
-
-        MoviesData.map(MObj => {
-            let tr = document.createElement("tr")
-            tr.innerHTML = `<td>${MObj.name}</td><td>${MObj.catagory}</td><td>${MObj.date}</td><td>${MObj.time}</td><td>${MObj.rating}</td>`
-            TableBody.append(tr)
-
-            totalWatchtime[MObj.catagory] += parseFloat(MObj.time)
-            totalRating[MObj.catagory] += parseFloat(MObj.rating)
-            // console.log(totalWatchtime, totalRating);
-            Count[MObj.catagory]++
-        })
-
-
-        function addName(place) {
-            place.textContent = "👦🏻 Hi " + localStorage.getItem("userName")
-        }
-
-        function SelectOption(place) {
-            let output = document.querySelector("#tot")
-
-            let CatagoriesData = JSON.parse(localStorage.getItem("catagoriesData")) ?? []
-            CatagoriesData.forEach(element => {
-                let option = document.createElement("option")
-                option.value = element
-                option.textContent = element
-                place.append(option)
-            })
-
-            place.addEventListener("change", e => {
-                let val = place.value
-
-                console.log(totalWatchtime[val])
-                console.log(totalRating[val])
-
-                output.children[0].lastElementChild.textContent = totalWatchtime[val]
-                output.children[1].lastElementChild.textContent = (totalRating[val] / Count[val]).toFixed(2)
-
-                // output.style.display = "flex"
-            })
-        }
-    })
-</script>
+<script src="yourMovies.js"></script>
 
 </html>

@@ -5,27 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../out.css">
+    <link rel="stylesheet" href="../../output.css">
 </head>
 
 <body class="bg-black text-white">
     <div class="absolute h-screen w-screen -z-10 opacity-20  overflow-hidden flex flex-wrap">
-        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">    </div>
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+        <img class="w-1/2 object-cover inline" src="Movies-Grid.jpg" alt="">
+    </div>
 
-    <nav class="flex justify-between p-4 max-md:flex-col text-center gap-4 ">
+    <nav class="flex justify-between p-4 max-md:px-0  max-md:flex-col text-center gap-4 ">
         <h2 class="text-3xl font-bold text-rose-500 ">Movies Tracker</h2>
-        <ul class="text-2xl font-semibold flex gap-4 max-md:text-xl justify-center">
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all text-rose-400 "><a href="#">Home</a></li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="category.html">Categories</a>
+        <ul class="text-2xl font-semibold flex gap-4 max-md:text-sm  justify-center">
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all text-rose-400 "><a href="#">Home</a></li>
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all "><a href="category.html">Categories</a>
             </li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="addMovies.html">Add
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all "><a href="addMovies.html">Add
                 Movies</a></li>
-            <li class="p-2 px-4 rounded-full hover:text-rose-500 transition-all "><a href="yourMovies.html">Your
+            <li class="p-2 rounded-full hover:text-rose-500 transition-all "><a href="yourMovies.html">Your
                 Movies</a></li>
         </ul>
     </nav>
 
-    <div class="text-center mt-12 px-12"><h1 class="text-6xl font-semibold max-md:text-3xl">Welcome to the Movies Tracker! Where you Arrange Your <span class="text-yellow-300">Dopamine</span> History</h1></div>
+    <div class="text-center mt-12 px-12 max-md:px-4 "><h1 class="text-6xl font-semibold max-md:text-3xl">Welcome to the Movies Tracker! Where you Arrange Your <span class="text-yellow-300">Dopamine</span> History</h1></div>
 
     <div class="p-4 flex flex-col gap-4 justify-center items-center mt-32 ">
         <input
@@ -40,24 +44,6 @@
         </a>
     </div>
 </body>
-<script>
-    let input = document.querySelector("#name")
-    let check = document.querySelector("#check")
-
-    document.querySelector("#button").addEventListener("click", e => {
-
-
-        if (input.value == "") {
-            alert("Please Enter Your Name")
-            return
-        }
-
-        if (check.checked == true) {
-            localStorage.setItem("catagoriesData", JSON.stringify(["Action","Comedy","Horror","Sci-fi","Christopher Nolan", "Anime"]))
-        }
-
-        localStorage.setItem("userName", input.value)
-        })
-</script>
+<script src="index.js"></script>
 
 </html>
