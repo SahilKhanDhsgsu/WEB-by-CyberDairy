@@ -1,3 +1,5 @@
+## `make a all minor to major - step by step approch from downloading to final creation of this local ai agent. with these model DeepSeek model locally. and if needed for feasibility i can use docker, olamma, langchain, python with any library and etc tools. final outcome: a locally powered ai agent that real time watch and suggest my all codebase, make a real time debugging and suggestion on vs code.`
+
 Here's a complete **end-to-end guide** to create your local AI coding assistant with DeepSeek integration:
 
 ---
